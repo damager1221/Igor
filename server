@@ -1,0 +1,15 @@
+import socket
+import subprocess
+
+
+listner = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+#включаем опцию
+listner.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
+#слушаем
+listner.bind(("192.168.1.46", 4444))
+listner.listen(0)#кол во подключений
+print("[+] Waiting for incoming connections")
+connection, address = listner.accept()
+print("[+] Got a connection" + str(address))
